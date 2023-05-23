@@ -1,0 +1,34 @@
+# Main Parameters
+main.seed = 0
+main.dataset = "tiny-imagenet"
+main.epoch = 80
+
+# Model Type
+create_model.model_name = "resnet18"
+create_model.activation_name = "relu"
+
+# Optimizer Parameters
+build_optimizer.optimizer_type = 'awp'
+build_awp_optimizer.lr = 0.1
+build_awp_optimizer.rho = 0.001
+build_awp_optimizer.momentum = 0.9
+build_awp_optimizer.weight_decay = 5e-4
+
+# Scheduler Parameters
+build_scheduler.scheduler_type = 'steplr'
+build_steplr_scheduler.lr_step_milestone = [40, 60]
+build_steplr_scheduler.lr_gamma = 0.1
+
+# Trainer Parameters
+AdvTrainer.adv_train_mode = "PGD-AT"
+AdvTrainer.model_ema_decay = 0.995
+AdvTrainer.temperature_low = 1.5
+AdvTrainer.temperature_high = 2.0
+AdvTrainer.interpolation_low = 0.3
+AdvTrainer.interpolation_high = 0.9
+
+# Attack Parameters
+AdvTrainer.adv_attacker = @PGD()
+PGD.alpha = 2 
+PGD.eps = 8
+PGD.steps = 10 

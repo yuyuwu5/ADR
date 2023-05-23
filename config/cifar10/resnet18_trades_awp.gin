@@ -1,0 +1,35 @@
+# Main Parameters
+main.seed = 0
+main.dataset = "cifar10"
+main.epoch = 200
+
+# Model Type
+create_model.model_name = "resnet18"
+create_model.activation_name = "relu"
+
+# Optimizer Parameters
+build_optimizer.optimizer_type = 'awp'
+build_awp_optimizer.lr = 0.1
+build_awp_optimizer.rho = 0.005
+build_awp_optimizer.momentum = 0.9
+build_awp_optimizer.weight_decay = 5e-4
+
+# Scheduler Parameters
+build_scheduler.scheduler_type = 'steplr'
+build_steplr_scheduler.lr_step_milestone = [100, 150]
+build_steplr_scheduler.lr_gamma = 0.1
+
+# Trainer Parameters
+AdvTrainer.adv_beta = 6.0
+AdvTrainer.adv_train_mode = "TRADES"
+AdvTrainer.model_ema_decay = 0.995
+AdvTrainer.temperature_low = -1
+AdvTrainer.temperature_high = -1
+AdvTrainer.interpolation_low = 0.7
+AdvTrainer.interpolation_high = 0.95
+
+# TRADES Parameters
+AdvTrainer.adv_attacker = @TRADES()
+TRADES.alpha = 2
+TRADES.eps = 8
+TRADES.steps = 10 

@@ -1,0 +1,36 @@
+# Main Parameters
+main.seed = 0
+main.dataset = "cifar10"
+main.epoch = 100
+main.aux_dataset_path = "/path/to/cifar10_ddpm.npz"
+
+# Model Type
+create_model.model_name = "preact-resnet18"
+create_model.activation_name = "swish"
+
+# Optimizer Parameters
+build_optimizer.optimizer_type = 'awp'
+build_awp_optimizer.lr = 0.4
+build_awp_optimizer.rho = 0.005
+build_awp_optimizer.momentum = 0.9
+build_awp_optimizer.weight_decay = 5e-4
+
+# Scheduler Parameters
+build_scheduler.scheduler_type = 'cosinelr'
+build_cosine_scheduler.lr_min = 0
+build_cosine_scheduler.warmup_lr_init = 1e-6
+build_cosine_scheduler.warmup_t = 2.5
+
+# Trainer Parameters
+AdvTrainer.adv_train_mode = "PGD-AT"
+AdvTrainer.model_ema_decay = 0.995
+AdvTrainer.temperature_low = -1
+AdvTrainer.temperature_high = -1
+AdvTrainer.interpolation_low = 0.7
+AdvTrainer.interpolation_high = 0.85
+
+# Attack Parameters
+AdvTrainer.adv_attacker = @PGD()
+PGD.alpha = 2 
+PGD.eps = 8
+PGD.steps = 10 

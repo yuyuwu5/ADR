@@ -1,0 +1,33 @@
+# Main Parameters
+main.seed = 0
+main.dataset = "cifar100"
+main.epoch = 200
+
+# Model Type
+create_model.model_name = "resnet18"
+create_model.activation_name = "relu"
+
+# Optimizer Parameters
+build_optimizer.optimizer_type = 'sgd'
+build_sgd_optimizer.lr = 0.1
+build_sgd_optimizer.momentum = 0.9
+build_sgd_optimizer.weight_decay = 5e-4
+
+# Scheduler Parameters
+build_scheduler.scheduler_type = 'steplr'
+build_steplr_scheduler.lr_step_milestone = [100, 150]
+build_steplr_scheduler.lr_gamma = 0.1
+
+# Trainer Parameters
+AdvTrainer.adv_train_mode = "PGD-AT"
+AdvTrainer.model_ema_decay = 0.995
+AdvTrainer.temperature_low = 1.0
+AdvTrainer.temperature_high = 1.5
+AdvTrainer.interpolation_low = 0.7
+AdvTrainer.interpolation_high = 0.95
+
+# Attack Parameters
+AdvTrainer.adv_attacker = @PGD()
+PGD.alpha = 2 
+PGD.eps = 8
+PGD.steps = 10 
